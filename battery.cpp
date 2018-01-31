@@ -1,9 +1,8 @@
 #include "zero.h"
 
-const unsigned int BATTERY_CAPACITY = 6000; // e.g. 850mAh battery
 static bool battery_ok = false;
 
-void setup_battery_mon(void)
+void battery_init(void)
 {
   if (!lipo.begin()) // begin() will return true if communication is successful
   {
@@ -18,7 +17,7 @@ void setup_battery_mon(void)
   }
 }
 
-void get_battery_stats(void)
+void battery_get_stats(void)
 {
   if (!battery_ok)
   {

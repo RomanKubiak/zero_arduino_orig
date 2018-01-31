@@ -28,7 +28,15 @@
 #define OK(fmt, ...)		printf(":0 " fmt "\n", ##__VA_ARGS__)
 #define ERROR(fmt, ...)		printf(":1 " fmt "\n", ##__VA_ARGS__)
 
-void setup_battery_mon(void);
-void setup_motors(void);
-void setup_radar(void);
+#define MOTOR_FORWARD 	1	
+#define MOTOR_BACK	0
+#define MOTOR_LEFT	1
+#define MOTOR_RIGHT	0
+
+#define BATTERY_CAPACITY	6000
+void battery_init();
+void battery_get_stats();
+void radar_init();
+void motors_init();
+
 #endif

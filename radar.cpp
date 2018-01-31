@@ -1,9 +1,9 @@
-#include "radar.h"
+#include "zero.h"
 
 VL53L0X lox1 = VL53L0X();
 VL53L0X lox2 = VL53L0X();
 
-void Radar::init()
+void radar_init()
 {
     DBG("enter");
     pinMode(RADAR_XSHUT1, OUTPUT);
@@ -57,7 +57,7 @@ void Radar::init()
     }
 }
 
-void Radar::getSingle()
+void radar_get_single()
 {
     int lox1Read = lox1.readRangeSingleMillimeters();
     int lox2Read = lox2.readRangeSingleMillimeters();

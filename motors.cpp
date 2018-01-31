@@ -1,50 +1,50 @@
-#include "motors.h"
+#include "zero.h"
 
-ZeroMotor::ZeroMotor(String _motorName, uint8_t _speedPin, uint8_t _dirPin1, uint8_t _dirPin2)
-    : motorName(_motorName), speedPin(_speedPin), dirPin1(_dirPin1), dirPin2(_dirPin2)
+void motor_set_speed(uint8_t motor, uint8_t speed)
 {
-    pinMode(speedPin, OUTPUT);
-    pinMode(dirPin1, OUTPUT);
-    pinMode(dirPin2, OUTPUT);
+    if (motor)
+        analogWrite(ENA, speed);
+    else
+	analogWrite(ENB, speed);
+}
+
+void motor_set_direction(uint8_t motor, uint8_t direction)
+{
+    if (motor)
+    {
+        digitalWrite(IN1, direction);
+        digitalWrite(IN2, !direction);
+    }
+    else
+    {
+        digitalWrite(IN3, direction);
+        digitalWrite(IN4, !direction);
+    }
     
-    stop();
 }
 
-void ZeroMotor::setSpeed(uint8_t speed)
+void motor_stop(uint8_t motor)
 {
-    analogWrite(speedPin, speed);
-    currentSpeed = speed;
+    motor_set_speed(motor,0);
+    if (motor)
+    {
+        digitalWrite(IN1,LOW);
+        digitalWrite(IN2,LOW);
+    }
+    else
+    {
+        digitalWrite(IN3,LOW);
+        digitalWrite(IN4,LOW);
+    }
 }
 
-void ZeroMotor::forward()
-{
-    digitalWrite(dirPin1,HIGH);
-    digitalWrite(dirPin2,LOW);
-}
-
-void ZeroMotor::backward()
-{
-    digitalWrite(dirPin1,LOW);
-    digitalWrite(dirPin2,HIGH);
-}
-
-void ZeroMotor::stop()
-{
-    DBG("now");
-    setSpeed(0);
-    digitalWrite(dirPin1,LOW);
-    digitalWrite(dirPin2,LOW);
-}
-
-ZeroMotors::ZeroMotors(ZeroMotor &_lMotor, ZeroMotor &_rMotor)
-    : lMotor(_lMotor), rMotor(_rMotor)
-{
-}
-
-void ZeroMotors::init()
+void motors_init()
 {
     DBG("initializing motors");
-    lMotor.stop();
-    rMotor.stop();
+    pinMode(ENA, OUTPUT);
+    pinMode(ENB, OUTPUT);
+    pinMode(IN1, OUTPUT);
+    pinMode(IN2, OUTPUT);
+    pinMode(IN3, OUTPUT);
+    pinMode(IN4, OUTPUT);
 }
-
