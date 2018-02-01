@@ -1,6 +1,6 @@
 #include "zero.h"
 
-void motor_set_speed(uint8_t motor, uint8_t speed)
+void motor_set_speed(bool motor, bool speed)
 {
     if (motor)
         analogWrite(ENA, speed);
@@ -8,7 +8,7 @@ void motor_set_speed(uint8_t motor, uint8_t speed)
 	analogWrite(ENB, speed);
 }
 
-void motor_set_direction(uint8_t motor, uint8_t direction)
+void motor_set_direction(bool motor, bool direction)
 {
     if (motor)
     {
@@ -23,7 +23,7 @@ void motor_set_direction(uint8_t motor, uint8_t direction)
     
 }
 
-void motor_stop(uint8_t motor)
+void motor_stop(bool motor)
 {
     motor_set_speed(motor,0);
     if (motor)

@@ -34,9 +34,20 @@
 #define MOTOR_RIGHT	0
 
 #define BATTERY_CAPACITY	6000
+#define SERIAL_BUFFER_SIZE	32
+
 void battery_init();
-void battery_get_stats();
 void radar_init();
 void motors_init();
 
+void serial_process();
+void serial_process_text();
+void serial_process_binary();
+void serial_rcv(const char end);
+
+void command_process(const char *command_token);
+
+void battery_get_stats();
+
+void servos_init();
 #endif

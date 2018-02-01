@@ -7,15 +7,17 @@ void setup()
 {	
 	Serial.begin(115200);
 	DBG("booting...");	
+
 	neo.begin();
 	battery_init();
 	motors_init();
 	radar_init();
+	servos_init();
 
 	DBG("done\n");
 }
 
 void loop()
-{  
+{
+	serial_process();
 }
-
