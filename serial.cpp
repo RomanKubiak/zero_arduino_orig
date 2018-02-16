@@ -1,4 +1,5 @@
 #include "zero.h"
+#include "commands.h"
 
 char serial_rcv_buffer[SERIAL_BUFFER_SIZE];
 bool serial_new_command_ready = false;
@@ -6,15 +7,16 @@ bool serial_processing_text = true;
 
 void serial_process_text()
 {
-    char *tok = strtok(&serial_rcv_buffer[0], ":");
-    if (tok)
-        command_process(tok);
+    DBG("now");
+    if (serial_rcv_buffer[0] == ':')
+        command_process(&serial_rcv_buffer[0]);
         
     serial_new_command_ready = false;
 }
 
 void serial_process_binary()
 {
+    DBG("now");
     serial_new_command_ready = false;
 }
 
