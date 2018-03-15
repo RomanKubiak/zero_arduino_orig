@@ -3,13 +3,15 @@
 void setup()
 {	
 	Serial.begin(115200);
-	DBG("booting...");		
+	DBG("booting...");
+
+	pinMode(HEARTBEAT_LED_PIN, OUTPUT);
 	neo_init();
 	battery_init();
 	compass_init();
 	motors_init();
 	radar_init();
-	servos_init();
+	camera_init();
 
 	DBG("done\n");
 }

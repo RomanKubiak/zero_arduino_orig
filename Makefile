@@ -5,6 +5,6 @@ BOARD_TAG     		= nano
 BOARD_SUB		= atmega328
 CXXFLAGS        	= -Os
 CFLAGS			= -Os -w
-ARDUINO_LIBS		= Servo Adafruit_NeoPixel VL53L0X Wire SparkFunBQ27441 lsm303-arduino EEPROM
+ARDUINO_LIBS		= Servo Adafruit_NeoPixel VL53L0X Wire SparkFunBQ27441 lsm303-arduino EEPROM Timer
 ARDUINO_SKETCHBOOK	= .
 include /usr/share/arduino/Arduino.mk

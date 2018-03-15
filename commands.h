@@ -2,6 +2,9 @@
 #define _COMMANDS_H_
 #include "zero.h"
 
+void command_digital_write(const char *args);
+void command_analog_write(const char *args);
+void command_camera_set(const char *args);
 void command_servo_move(const char *args);
 void command_motor_set(const char *args);
 void command_radar_set_angle(const char *args);
@@ -43,6 +46,22 @@ const struct cmd_t commands[] =
     {
     	n		: "swep",
     	callback	: command_radar_sweep
+    },
+    {
+        n		: "moto",
+        callback	: command_motor_set
+    },
+    {
+        n		: "cam",
+        callback	: command_camera_set
+    },
+    {
+        n		: "aw",
+        callback	: command_analog_write
+    },
+    {
+        n		: "dw",
+        callback	: command_digital_write
     },
     { 
     	NULL 
